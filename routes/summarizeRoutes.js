@@ -1,10 +1,9 @@
 import express from 'express';
 const router = express.Router();
+import { summarizeNotes } from '../controllers/summarizeController';
 
 
-app.get('/');
-
-
+app.post('/summarize', summarizeNotes);
 
 
 export default router;

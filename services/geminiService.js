@@ -31,3 +31,33 @@ export const generateSummary = async (text) => {
     return response.text;
 };
 
+
+export const generateExam = async (text, questionCount, difficulty, questionTypes) => { 
+
+    const prompt = `
+    You are an AI exam generator.
+    
+    Create ${questionCount} questions
+    based ONLY on the study material/notes.
+    
+    Difficulty:
+    ${difficulty}
+    
+    Question Types:
+    ${questionTypes}
+    
+    Do not use any information outside
+    the provided study material/notes.
+    
+    Study Material:
+    ${text}
+    `;
+
+    const response = await ai.models.generateContent({
+        model: "gemini-3.6-flash",
+        contents: prompt
+    });
+
+    return response.text;
+}
+
