@@ -1,12 +1,24 @@
 import { generateExam } from "../services/geminiService";
+import { extractPdfText } from "../services/pdfService";
 
 
 export const generateExamination = async (req, res) => {
 
 
     try {
+
+        if (!req.file) {
+            return res.status(400).json({
+                message: "Please upload a PDF."
+            });
+        }
+
         
-        const { text, questionCount, difficulty, questionTypes } = req.body;
+        const { questionCount, difficulty, questionTypes } = req.body;
+
+
+        const text = await extractPdfText(req.file.buffer);
+        
 
         if (!text || !questionCount || !difficulty || !questionTypes ) {
             return res.status(400).json({
