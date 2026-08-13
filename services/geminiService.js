@@ -43,8 +43,19 @@ export const generateExam = async (text, questionCount, difficulty, questionType
     Difficulty:
     ${difficulty}
     
-    Question Types:
-    ${questionTypes}
+
+    RETURN ONLY valid JSON in this structure:
+    {
+        "questions": [
+            {
+                "question": "Question here",
+                "type": "multiple_choice",
+                "choices": ["A", "B", "C", "D"],
+                "correctAnswer": "A",
+                "explanation": "Explanation here"
+            }
+        ]
+    }
     
     Do not use any information outside
     the provided study material/notes.
