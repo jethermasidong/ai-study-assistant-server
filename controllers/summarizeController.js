@@ -1,4 +1,4 @@
-import { generateSummary } from "../services/geminiService";
+import { generateSummary } from "../services/geminiService.js";
 
 
 export const summarizeNotes = async (req, res) => {
@@ -27,4 +27,4 @@ export const summarizeNotes = async (req, res) => {
 }
 
 
-export { summarizeNotes };
+export default { summarizeNotes };

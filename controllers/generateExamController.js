@@ -1,5 +1,5 @@
-import { generateExam } from "../services/geminiService";
-import { extractPdfText } from "../services/pdfService";
+import { generateExam } from "../services/geminiService.js";
+import { extractPdfText } from "../services/pdfService.js";
 
 
 export const generateExamination = async (req, res) => {
@@ -13,12 +13,10 @@ export const generateExamination = async (req, res) => {
             });
         }
 
-        
+        const text = await extractPdfText(req.file.buffer);
+
         const { questionCount, difficulty, questionTypes } = req.body;
 
-
-        const text = await extractPdfText(req.file.buffer);
-        
 
         if (!text || !questionCount || !difficulty || !questionTypes ) {
             return res.status(400).json({
@@ -39,4 +37,4 @@ export const generateExamination = async (req, res) => {
     }
 }
 
-export { generateExam };
+export default { generateExamination };

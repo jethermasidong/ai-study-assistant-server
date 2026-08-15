@@ -1,9 +1,9 @@
 import express from 'express';
 const router = express.Router();
-import { summarizeNotes } from '../controllers/summarizeController';
+import { summarizeNotes } from '../controllers/summarizeController.js';
 
 
-app.post('/summarize', summarizeNotes);
+router.post('/summarize', summarizeNotes);
 
 
 export default router;

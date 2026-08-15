@@ -1,9 +1,9 @@
 import express from 'express';
 const router = express.Router();
-import { generateExamination } from '../controllers/generateExamController';
-import upload from '../middleware/uploadMiddleware';
+import { generateExamination } from '../controllers/generateExamController.js';
+import upload from '../middleware/uploadMiddleware.js';
 
-app.post('/examination', upload.single("file"), generateExamination);
+router.post('/examination', upload.single("file"), generateExamination);
 
 
 export default router;

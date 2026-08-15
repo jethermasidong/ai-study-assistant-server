@@ -66,9 +66,12 @@ export const generateExam = async (text, questionCount, difficulty, questionType
 
     const response = await ai.models.generateContent({
         model: "gemini-3.6-flash",
-        contents: prompt
+        contents: prompt,
+        config: {
+            responseMimeType: "application/json",
+        }
     });
 
-    return response.text;
+    return JSON.parse(response.text);
 }
 
