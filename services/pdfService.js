@@ -8,6 +8,6 @@ export const extractPdfText = async (buffer) => {
 
     await parser.destroy();
 
-    return data.text;
+    return result.text;
     
 };

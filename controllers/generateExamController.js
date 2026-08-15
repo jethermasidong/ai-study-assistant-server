@@ -32,7 +32,7 @@ export const generateExamination = async (req, res) => {
     } catch (error) {
         console.error("Gemini Error:", error);
         res.status(500).json({
-            message: "Failed to generate summary."
+            message: "Failed to generate exam."
         });
     }
 }

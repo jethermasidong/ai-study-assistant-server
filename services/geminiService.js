@@ -1,12 +1,11 @@
 import { GoogleGenAI } from "@google/genai";
 
-const ai = new GoogleGenAI({
-    apiKey: process.env.GEMINI_API_KEY
-});
-
-
 export const generateSummary = async (text) => {
     
+
+    const ai = new GoogleGenAI({
+        apiKey: process.env.GEMINI_API_KEY
+    });
 
     const prompt = `
     You are an AI study assistant.
@@ -33,6 +32,11 @@ export const generateSummary = async (text) => {
 
 
 export const generateExam = async (text, questionCount, difficulty, questionTypes) => { 
+
+
+    const ai = new GoogleGenAI({
+        apiKey: process.env.GEMINI_API_KEY
+    });
 
     const prompt = `
     You are an AI exam generator.
