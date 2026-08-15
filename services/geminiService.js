@@ -53,7 +53,7 @@ export const generateExam = async (text, questionCount, difficulty, questionType
         "questions": [
             {
                 "question": "Question here",
-                "type": "multiple_choice",
+                "type": ${questionTypes},
                 "choices": ["A", "B", "C", "D"],
                 "correctAnswer": "A",
                 "explanation": "Explanation here"
