@@ -8,15 +8,34 @@ export const generateSummary = async (text) => {
     });
 
     const prompt = `
-    You are an AI study assistant.
-    Summarize the following study material.
+    You are an AI study assistant. Your job is to read the provided notes/study material.
+
+    Summarize the following study material. Make the summary/reviewer understandable like you
+    are giving a reviewer for a 10 years old reviewee.
+
+    Do not use any information outside the provided study material.
+
     
-    Requirements:
-    - Identify the main topics of the notes.
-    - Explain important concepts.
-    - Include important terms and definitions.
-    - Keep the explanation more easy to understand
-    - Do not add information that is not present in the notes/study material
+    RETURN ONLY valid JSON in this structure:
+    {
+        "summary": "Write 2 simple sentences summarizing the main point of the entire document." 
+        "key_terms": [
+            {
+                "word": "Extract an important vocabulary key term word in the document",
+                "type": "Write a short, simple definition for the word, from the document
+            }
+        ],
+        "main_topics": [
+            {
+                "topic": "Name one of the big ideas from the text",
+                "bullet_points": [
+                    "Write a short bullet point explaining this idea.",
+                    "Write another short bullet point.",
+                    "Limit to 3-4 bullet points per topic."
+                ]
+            }
+        ]
+    }
     
     Study Material:
     ${text}
@@ -24,10 +43,13 @@ export const generateSummary = async (text) => {
 
     const response = await ai.models.generateContent({
         model: "gemini-3.6-flash",
-        contents: prompt
+        contents: prompt,
+        config: {
+            responseMimeType: "application/json",
+        }
     });
      
-    return response.text;
+    return JSON.parse(response.text);
 };
 
 

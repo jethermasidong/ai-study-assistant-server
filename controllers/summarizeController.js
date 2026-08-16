@@ -1,9 +1,17 @@
 import { generateSummary } from "../services/geminiService.js";
-
+import { extractPdfText } from "../services/pdfService.js";
 
 export const summarizeNotes = async (req, res) => {
+
     try {
-        const { text } = req.body;
+        
+        if (!req.file) {
+            return res.status(400).json({
+                message: "Please upload a PDF"
+            });
+        }
+
+        const text = await extractPdfText(req.file.buffer);
 
         if (!text) {
             return res.status(400).json({
