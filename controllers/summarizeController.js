@@ -1,5 +1,5 @@
 import { generateSummary } from "../services/geminiService.js";
-import { extractPdfText } from "../services/pdfService.js";
+import { extractFileText } from "../services/fileService.js";
 
 export const summarizeNotes = async (req, res) => {
 
@@ -11,7 +11,7 @@ export const summarizeNotes = async (req, res) => {
             });
         }
 
-        const text = await extractPdfText(req.file.buffer);
+        const text = await extractFileText(req.file.buffer);
 
         if (!text) {
             return res.status(400).json({

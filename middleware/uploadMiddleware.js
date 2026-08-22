@@ -3,6 +3,12 @@ import multer from 'multer';
 
 const storage = multer.memoryStorage();
 
+const allowedFileTypes = [
+  'application/pdf',
+  'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+  'application/vnd.openxmlformats-officedocument.presentationml.presentation'
+];
+
 const upload = multer({
     storage,
     limits: {
@@ -10,10 +16,10 @@ const upload = multer({
     },
     fileFilter: (req, file, cb) => {
 
-        if (file.mimetype === "application/pdf") {
+        if (allowedFileTypes.includes(file.mimetype)) {
             cb(null, true);
         } else {
-            cb(new Error("Only PDF files are allowed."));
+            cb(new Error("Invalid file type. Only PDF, DOCX, and PPTX files are allowed."));
         }
     }
 });

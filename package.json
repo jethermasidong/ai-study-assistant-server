@@ -16,6 +16,7 @@
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
     "multer": "^2.2.0",
+    "officeparser": "^7.8.0",
     "pdf-parse": "^2.4.5"
   }
 }

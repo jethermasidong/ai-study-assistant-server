@@ -1,5 +1,5 @@
 import { generateExam } from "../services/geminiService.js";
-import { extractPdfText } from "../services/pdfService.js";
+import { extractFileText } from "../services/fileService.js";
 
 
 export const generateExamination = async (req, res) => {
@@ -13,7 +13,7 @@ export const generateExamination = async (req, res) => {
             });
         }
 
-        const text = await extractPdfText(req.file.buffer);
+        const text = await extractFileText(req.file.buffer);
 
         const { questionCount, difficulty, questionTypes } = req.body;
 
